@@ -51,6 +51,8 @@ var refreshUpCount = function(callback) {
 
 Check.on('afterInsert', function() { upCount = undefined; });
 Check.on('afterRemove', function() { upCount = undefined; });
+Check.on('afterDelete', function() { upCount = undefined; });
+
 CheckEvent.on('afterInsert', function() { upCount = undefined; });
 
 app.get('/checks/count', function(req, res, next) {
@@ -85,3 +87,17 @@ if (!module.parent) {
   app.listen(3000);
   console.log('Express started on port 3000');
 }
+
+MTS-1 (Level P1)
+MTS-2 (Level P2)
+MTS-3 (Level P3) 
+Sr MTS (Level P4)
+Staff Engineer (Level P5)
+Sr Staff Engineer (Level P6)
+Principal Engineer (Level P7)
+ON THE IC TRACK
+
+Manager (Level M3 equivalent to P4)
+Sr Manager (Level M4 equivalent to P5)
+Director (Level M5 equivalent to P6)
+Sr Director (Level M6 equivalent to P7)

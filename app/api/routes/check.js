@@ -88,6 +88,21 @@ module.exports = function(app) {
       res.json(stats);
     });
   });
+
+  app.get('/checks/:id/pings', function(req, res, next){
+    CheckEvent
+    .find({ timestamp: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000 )} })
+    .sort({ timestamp: -1 })
+    .select({ tags: 0 })
+    .limit(100)
+    .exec(function(err, events){
+      if (err) return next(err);
+      CheckEvent.aggregateEventsByDay(events, function(err. aggregatedEvents){
+        res.json(aggregatedEvents)
+      })
+    })
+
+  })
   
   app.get('/checks/:id/events', function(req, res, next) {
     var query = {

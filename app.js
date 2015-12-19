@@ -73,6 +73,12 @@ app.configure('production', function() {
   app.use(express.errorHandler());
 });
 
+app.configure('staging', function() {
+  if (config.verbose) mongoose.set('debug', true);
+  app.use(express.static(__dirname + '/public'));
+  app.use(express.errorHandler({ dumpExceptions:true, showStack: true}));
+})
+
 // Routes
 app.emit('beforeApiRoutes', app, apiApp);
 app.use('/api', apiApp);
